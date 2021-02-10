@@ -1,0 +1,38 @@
+.MainPage {
+  width: 100%;
+  height: 100%;
+}
+
+.Table {
+  margin: auto;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+.Table caption {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.Table td,
+.Table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.Table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.Table tr:hover {
+  background-color: #ddd;
+}
+
+.Table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
