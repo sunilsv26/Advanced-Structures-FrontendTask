@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import Input from './input/input';
+import Input from "./input/input";
 import classes from "./auth.module.css";
+import axios from 'axios';
 
-const Auth = () => {
+
+const Auth = (props) => {
   const [controls, setControls] = useState({
     email: {
       elementType: "input",
@@ -49,7 +51,7 @@ const Auth = () => {
     setControls(updatedControl);
   };
 
-  const  formValidationHandler = (value, rule) => {
+  const formValidationHandler = (value, rule) => {
     let isValid = true;
     if (rule.isRequired) {
       isValid = value.trim() !== "" && isValid;
@@ -63,13 +65,32 @@ const Auth = () => {
     }
     return isValid;
   };
-  const  swithSign = () => {
+  const swithSign = () => {
     setIsSignUp(!isSignUp);
   };
 
-  const  submitHandler = () => {
-    console.log(1);
-  };
+  const submitHandler = (ev) => {
+    ev.preventDefault();
+    const authData = {
+      email: controls.email.value,
+      password: controls.password.value,
+      returnSecureToken: true,
+    };
+    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDJGA586N4F79dojyzm3ONogqwcKdZJEXU'
+    if(isSignUp){
+      url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDJGA586N4F79dojyzm3ONogqwcKdZJEXU'
+    }
+    axios.post(url,authData)
+        .then(resp=>{
+            const tokenId= resp.data.idToken;
+            const userId= resp.data.localId;
+            const expirationDate  = new Date(new Date().getTime() + resp.data.expiresIn*1000) 
+            localStorage.setItem('token',tokenId);
+            localStorage.setItem('expirationDate',expirationDate)
+            localStorage.setItem('userId',userId)
+            window.location.reload()}
+           ).catch(error=>{alert(error.response.data.error.message);})
+  }
 
   let controlsArray = [];
   for (let key in controls) {
@@ -83,20 +104,20 @@ const Auth = () => {
           elementType={formEl.Config.elementType}
           elementConfig={formEl.Config.elementConfig}
           value={formEl.Config.value}
-          changed={(event) =>inputChangedHandler(event, formEl.id)}
+          changed={(event) => inputChangedHandler(event, formEl.id)}
           invalid={!formEl.Config.valid}
           touched={formEl.Config.touched}
         />
       ))}
       <button
         disabled={!controls.password.valid || !controls.email.valid}
-        onClick={submitHandler}
+        onClick={(ev) => submitHandler(ev)}
       >
-        {isSignUp ? "Sign Up" : "Sign In"}
+       {isSignUp ? "Sign In" : "Sign Up"}
       </button>
       <br />
       <button onClick={swithSign} className={classes.Sign}>
-        Switch to {isSignUp ? "Sign In" : "Sign Up"}
+        Switch to {isSignUp ? "Sign Up" : "Sign In"}
       </button>
     </form>
   );
