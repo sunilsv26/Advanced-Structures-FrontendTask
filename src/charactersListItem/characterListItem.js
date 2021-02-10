@@ -7,7 +7,7 @@ const characterListItem=(props)=>{
         <td>{props.name}</td>
         <td>{props.birthday}</td>
         <td>
-          <img src={props.image} alt="img" />
+          <img src={props.image} width='60' height='70'alt="img" />
         </td>
         <td>
           {props.occupation.map((el, idx) => {
