@@ -1,0 +1,20 @@
+nav {
+  width: 100%;
+}
+.Pagination {
+  width: 80%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.PageItem {
+  margin: 12px;
+}
+.PageLink {
+  text-decoration: none;
+}
+.PageLink:active {
+  text-decoration: underline;
+}
