@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./homePage.module.css";
+import axios from "axios";
 
-const mainPage = () => {
+const MainPage = (props) => {
   const [listOfCharacters, setListOfCharacters] = useState([]);
-  const [listOfEpisodes,setListOfEpisodes]=useState([]);
-  const[loadBycharacterList,setLoadByCharacterList]=useState(true);
+  const [listOfEpisodes, setListOfEpisodes] = useState([]);
+  const [loadBycharacterList, setLoadByCharacterList] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage,setPostsPerPage] = useState(4);
+  const [postsPerPage, setPostsPerPage] = useState(4);
 
   let charactersList;
 
-  const getCharacterList=()=>{
+  useEffect(() => {
+    getCharacterList();
+    getEpisodesList();
+  },[]);
 
-  }
+  const getCharacterList = () => {
+    const fetchList = async () => {
+      const resp = await axios.get(
+        "https://www.breakingbadapi.com/api/characters"
+      );
+      setListOfCharacters(resp.data);
+      console.log(resp.data);
+    };
+    fetchList();
+    
+  };
 
-  const getEpisodesList=()=>{
-      
-  }
+  const getEpisodesList = () => {
+    const fetchList = async () => {
+      const resp = await axios.get(
+        "https://www.breakingbadapi.com/api/episodes"
+      );
+      setListOfEpisodes(resp.data);
+      console.log(resp.data);
+    };
+    fetchList();
+  };
   const updateList = (ev) => {};
   return (
     <div className={classes.MainPage}>
@@ -32,4 +53,4 @@ const mainPage = () => {
   );
 };
 
-export default mainPage;
+export default MainPage;
