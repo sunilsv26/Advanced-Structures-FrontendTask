@@ -3,6 +3,7 @@ import classes from "./homePage.module.css";
 import axios from "axios";
 import CharacterListItem from "../charactersListItem/characterListItem";
 import EpisodeListItem from '../episodeListItem/episodeListItem';
+import Pagination from '../paginateItem/paginate'
 
 const MainPage = (props) => {
   const [listOfCharacters, setListOfCharacters] = useState([]);
@@ -135,6 +136,14 @@ const MainPage = (props) => {
         <caption>Breaking Bad</caption>
         {loadBycharacterList? charactersList:episodeList}
       </table>
+      <p>{`Page ${currentPage} of ${Math.ceil(
+        (loadBycharacterList? listOfCharacters.length:listOfEpisodes.length)/ postsPerPage
+      )}`}</p>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={loadBycharacterList ? listOfCharacters.length:listOfEpisodes.length}
+        paginate={paginate}
+      />
     </div>
   );
 };
