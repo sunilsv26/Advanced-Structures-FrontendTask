@@ -1,15 +1,20 @@
 
-import './App.css';
-import HomePage from './homePage/homePage';
-import Auth from './auth/auth';
+import "./App.css";
+import HomePage from "./homePage/homePage";
+import Auth from "./auth/auth";
+import { Route} from "react-router-dom";
 
-function App() {
-  const tokenId = localStorage.getItem('tokenId')
+const App = (props) => {
   return (
     <div className="App">
-      {tokenId ? <HomePage />:<Auth />}
+      {
+        <Route
+          path="/"
+          component={localStorage.getItem("token") !== null ? HomePage : Auth}
+        />
+      }
     </div>
   );
-}
+};
 
 export default App;
