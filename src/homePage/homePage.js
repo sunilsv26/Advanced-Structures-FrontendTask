@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import classes from "./homePage.module.css";
 import axios from "axios";
 import CharacterListItem from "../charactersListItem/characterListItem";
+import EpisodeListItem from '../episodeListItem/episodeListItem';
 
 const MainPage = (props) => {
   const [listOfCharacters, setListOfCharacters] = useState([]);
@@ -86,7 +87,43 @@ const MainPage = (props) => {
       </tbody>
     </Fragment>
   );
-  const updateList = (ev) => {};
+  const updateList = (ev) => {
+      let value = ev.target.value;
+      if(value==='Episodes'){
+          setLoadByCharacterList(false)
+          setPostsPerPage(6)
+      }
+      else{
+          setLoadByCharacterList(true)
+          setPostsPerPage(4)
+      }
+  };
+
+  let episodeList =(
+    <Fragment> <thead>
+    <tr>
+      <th>Series</th>
+      <th>Season</th>
+      <th>Episode</th>
+      <th>Title</th>
+      <th>AirDate</th>
+      <th>Characters</th>
+    </tr>
+    </thead>
+    <tbody>
+    {currentEpisodes.map((chr) => {
+      return (
+        <EpisodeListItem
+        series={chr.series}
+        season={chr.season}
+        episode={chr.episode}
+        title={chr.title}
+        airDate={chr.air_date}
+        characters={chr.characters}/>
+      );
+    })}
+  </tbody></Fragment>
+  )
   return (
     <div className={classes.MainPage}>
       <label>Select by : </label>
@@ -96,7 +133,7 @@ const MainPage = (props) => {
       </select>
       <table className={classes.Table}>
         <caption>Breaking Bad</caption>
-        {charactersList}
+        {loadBycharacterList? charactersList:episodeList}
       </table>
     </div>
   );
