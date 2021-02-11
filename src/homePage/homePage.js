@@ -125,8 +125,14 @@ const MainPage = (props) => {
     })}
   </tbody></Fragment>
   )
+
+  const logOutHandler=()=>{
+    localStorage.removeItem('token');
+    window.location.reload()
+  }
   return (
     <div className={classes.MainPage}>
+      <button onClick={logOutHandler}>Logout</button>
       <label>Select by : </label>
       <select onChange={(ev) => updateList(ev)}>
         <option>Characters</option>
