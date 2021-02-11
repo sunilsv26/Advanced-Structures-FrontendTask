@@ -4,11 +4,13 @@
 }
 
 .MainPage button {
-  margin-left: 12px;
-  margin-right: 12px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
 }
 
 .Table {
+  margin-top: 12px;
   margin: auto;
   border-collapse: collapse;
   width: 90%;

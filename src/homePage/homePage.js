@@ -132,12 +132,12 @@ const MainPage = (props) => {
   }
   return (
     <div className={classes.MainPage}>
-      <button onClick={logOutHandler}>Logout</button>
       <label>Select by : </label>
       <select onChange={(ev) => updateList(ev)}>
         <option>Characters</option>
         <option>Episodes</option>
       </select>
+      <button onClick={logOutHandler}>Logout</button>
       <table className={classes.Table}>
         <caption>Breaking Bad</caption>
         {loadBycharacterList? charactersList:episodeList}
