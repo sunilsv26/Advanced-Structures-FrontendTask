@@ -3,10 +3,11 @@
   height: 100%;
 }
 
-.MainPage button{
+.MainPage button {
   margin-left: 12px;
   margin-right: 12px;
 }
+
 .Table {
   margin: auto;
   border-collapse: collapse;

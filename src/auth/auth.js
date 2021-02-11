@@ -92,6 +92,24 @@ const Auth = (props) => {
            ).catch(error=>{alert(error.response.data.error.message);})
   }
 
+  const forgotPassword=()=>{
+    const emailid =prompt('Enter Your Email-id','');
+    if(emailid===null){
+      return
+    }
+    if(emailid!==''){
+      const data = {
+        requestType:'PASSWORD_RESET',
+        email:`${emailid}`
+      }
+      axios.post('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDJGA586N4F79dojyzm3ONogqwcKdZJEXU',data)
+      .then(resp=>{ 
+        alert('Password reset link is sent to your email')
+        props.history.push('/reset')})
+      .catch(error=>alert(error.response.data.error.message))
+    }
+  }
+
   let controlsArray = [];
   for (let key in controls) {
     controlsArray.push({ id: key, Config: controls[key] });
@@ -119,6 +137,7 @@ const Auth = (props) => {
       <button onClick={swithSign} className={classes.Sign}>
         Switch to {isSignUp ? "Sign Up" : "Sign In"}
       </button>
+      <div onClick={forgotPassword} className={classes.Reset}>Forgot Password</div>
     </form>
   );
   return <div className={classes.Controls}>{form}</div>;
