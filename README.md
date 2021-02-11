@@ -1,40 +1,47 @@
 # Getting Started with Create React App
 
-Firt thing I did read the task document carefully and wrote down the all the manin tasks and sub-devided them nto smaller one.
+>First I read the task document carefully and wrote down the all the manin tasks and sub-devided them into smaller one.
+
 1.Auth Page.
+
 2.Home Page.
 
 
 1.Auth page.
-  a.Input's(email,password)
-  b.Buttons (login,logout)
-  c.Forgot password Link.
 
-Created Auth component with email,password inputs and reset password option using csutom css with  functions for input validation.
+a.Input's(email,password)
 
-For Authentication used firebase rest API,stored user details in local storage.
+b.Buttons (login,logout)
+
+c.Forgot password Link.
+
+>Created Auth component with email,password inputs and reset password option using custom css with  functions for input validation.
+
+>For Authentication used firebase rest API,stored user details in local storage.
 
 2.Home Page.
 
-Installed axios and logged the response from API to had a look into response data and based on that decided to define following components.
+>Installed axios and logged the response from API to had a look into response data and based on that decided to define following components.
 
-   a.Component for Single Character detail.
-   b.Component for Single Episode details.
-   c.Component responsibble for showing all episodes and characters.
+a.Component for Single Character detail.
 
-There were around 62 characters and 102 episodes, so decided to repesent them into table with pagination.
+b.Component for Single Episode details.
 
-Defined home page with logout,selct and  table elements.
+c.Component responsibble for showing all episodes and characters.
 
-Next wrote the character component and episode component as table row.
+>There were around 62 characters and 102 episodes, so decided to repesent them into table with pagination.
 
-Used useState and  useEffect hooks to fetch and store data.
+>Defined home page with logout,selct and  table elements.
 
-Craeted list of characters and episodes  by mapping stored data and rendered them as list in table.
+>Next wrote the character component and episode component as table row.
 
-Further improvement will be like adding spinner ,HOC to show error message to user etc.
+>Used useState and  useEffect hooks to fetch and store data.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+>Created list of characters and episodes  by mapping stored data and rendered them as list in table.
+
+>Further improvement will be like adding spinner ,HOC to show error message to user etc.
+
+>This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
